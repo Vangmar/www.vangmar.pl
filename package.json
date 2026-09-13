@@ -1,0 +1,17 @@
+{
+  "name": "vangmar-pl",
+  "version": "1.0.0",
+  "description": "Static rebuild of the Vangmar.pl WordPress blog (EN/PL), deployed to GitHub Pages.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "node --eval \"require('node:fs').rmSync('_site',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "cheerio": "^1.2.0"
+  }
+}

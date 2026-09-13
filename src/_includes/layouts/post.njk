@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+---
+{%- set t = i18n[lang] -%}
+{%- set langPosts = collections.postsByDate | byLang(lang) -%}
+{#- Adjacent posts within the same language, matching Polylang's behaviour. -#}
+{%- set siblings = langPosts | adjacent(page.url) -%}
+{%- set newer = siblings.newer -%}
+{%- set older = siblings.older -%}
+			<div id="loop-container" class="loop-container">
+				<div class="post type-post status-publish format-standard{% if image %} has-post-thumbnail{% endif %} hentry entry">
+{%- if image %}
+					<div class="featured-image">
+						<img src="{{ image }}" class="attachment-full size-full wp-post-image" alt="{{ imageAlt | default('', true) }}"{% if imageWidth %} width="{{ imageWidth }}"{% endif %}{% if imageHeight %} height="{{ imageHeight }}"{% endif %}{% if imageSrcset %} srcset="{{ imageSrcset }}" sizes="(max-width: {{ imageWidth }}px) 100vw, {{ imageWidth }}px"{% endif %}>
+					</div>
+{%- endif %}
+					<article>
+						<div class="post-header">
+							<h1 class="post-title">{{ title }}</h1>
+							<span class="post-meta">{{ t.publishedOn }} <span class="date"><a href="{{ page.date | monthUrl(lang) }}">{{ page.date | postDate(lang) }}</a></span></span>
+						</div>
+						<div class="post-content">
+{{ content | safe }}
+						</div>
+{%- if categories %}
+						<div class="post-categories"><span>{{ t.publishedIn }}</span>
+{%- for category in categories %}
+							<a href="{{ category.url }}" title="{{ t.viewAllPostsIn }} {{ category.name }}">{{ category.name }}</a>
+{%- endfor %}
+						</div>
+{%- endif %}
+{%- if postTags %}
+						<div class="post-tags">
+							<ul>
+{%- for tag in postTags %}
+								<li><a href="{{ tag.url }}" title="{{ t.viewAllPostsTagged }} {{ tag.name }}">{{ tag.name }}</a></li>
+{%- endfor %}
+							</ul>
+						</div>
+{%- endif %}
+					</article>
+					<nav class="further-reading">
+						<div class="previous">
+{%- if older %}
+							<span>{{ t.previousPost }}</span>
+							<a href="{{ older.url }}" rel="prev">{{ older.data.title }}</a>
+{%- else %}
+							<span>{{ t.noOlderPosts }}</span>
+							<a href="{{ t.home }}">{{ t.returnToBlog }}</a>
+{%- endif %}
+						</div>
+						<div class="next">
+{%- if newer %}
+							<span>{{ t.nextPost }}</span>
+							<a href="{{ newer.url }}" rel="next">{{ newer.data.title }}</a>
+{%- else %}
+							<span>{{ t.noNewerPosts }}</span>
+							<a href="{{ t.home }}">{{ t.returnToBlog }}</a>
+{%- endif %}
+						</div>
+					</nav>
+				</div>
+			</div>

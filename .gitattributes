@@ -1,0 +1,13 @@
+# Normalise line endings so the repo stays LF regardless of the machine that
+# commits. The site is built on Linux runners, and mixed endings would otherwise
+# show up as whole-file diffs.
+* text=auto eol=lf
+
+# Binary assets must never be touched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.woff2 binary
+*.ttf binary
+*.pdf binary

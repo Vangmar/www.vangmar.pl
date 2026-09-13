@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+isHome: true
+---
+{%- set t = i18n[lang] -%}
+			<h1 class="screen-reader-text">{{ t.postsHeading }}</h1>
+			<div id="loop-container" class="loop-container">
+{%- for post in collections.postsByDate | byLang(lang) %}
+				<div class="post type-post status-publish format-standard{% if post.data.image %} has-post-thumbnail{% endif %} hentry entry">
+{%- if post.data.image %}
+					<div class="featured-image">
+						<a href="{{ post.url }}" tabindex="-1">{{ post.data.title }}<img src="{{ post.data.image }}" class="attachment-full size-full wp-post-image" alt="{{ post.data.imageAlt | default('', true) }}"{% if post.data.imageWidth %} width="{{ post.data.imageWidth }}"{% endif %}{% if post.data.imageHeight %} height="{{ post.data.imageHeight }}"{% endif %}></a>
+					</div>
+{%- endif %}
+					<article>
+						<div class="post-header">
+							<h2 class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+							<span class="post-meta">{{ t.publishedOn }} <span class="date"><a href="{{ post.date | monthUrl(lang) }}">{{ post.date | postDate(lang) }}</a></span></span>
+						</div>
+						<div class="post-content">
+{{ post.templateContent | safe }}
+						</div>
+					</article>
+				</div>
+{%- endfor %}
+			</div>

@@ -1,0 +1,15 @@
+---
+# WordPress month archives: /2023/11/ and /pl/2025/06/.
+# The sidebar's Archives widget links here, so these must exist for every month
+# that has posts — one page per (language, month) pair.
+pagination:
+  data: collections.dateArchives
+  size: 1
+  alias: archive
+permalink: "{{ archive.date | monthUrl(archive.lang) }}"
+layout: layouts/archive.njk
+bodyClass: archive date wp-theme-author full-post
+eleventyComputed:
+  lang: "{{ archive.lang }}"
+  title: "Month: {{ archive.date | monthLabel(archive.lang) }}"
+---

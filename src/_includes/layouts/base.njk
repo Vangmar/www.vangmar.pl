@@ -1,0 +1,65 @@
+{%- set t = i18n[lang] -%}
+<!DOCTYPE html>
+<html lang="{{ t.htmlLang }}">
+<head>
+<meta charset="UTF-8">
+<title>{% if title and not isHome %}{{ title }} &#8211; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- if description %}
+<meta name="description" content="{{ description }}">
+{%- endif %}
+<link rel="canonical" href="{{ page.url | absolute(site.url) }}">
+{#-
+  hreflang alternates are only emitted where a genuine counterpart exists: a post
+  paired with its translation, or the two home pages with each other. Polylang
+  behaved the same way — /pl/burza/ has no English version and therefore carried
+  no alternates, and inventing a pair there would tell search engines that an
+  unrelated page is its translation.
+-#}
+{%- if translation %}
+<link rel="alternate" href="{{ page.url | absolute(site.url) }}" hreflang="{{ lang }}">
+<link rel="alternate" href="{{ translation.url | absolute(site.url) }}" hreflang="{{ translation.lang }}">
+{%- elif isHome %}
+<link rel="alternate" href="{{ '/' | absolute(site.url) }}" hreflang="en">
+<link rel="alternate" href="{{ '/pl/' | absolute(site.url) }}" hreflang="pl">
+{%- endif %}
+<meta property="og:locale" content="{{ t.ogLocale }}">
+<meta property="og:type" content="{% if layout == 'layouts/post.njk' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ title or site.title }}">
+{%- if description %}
+<meta property="og:description" content="{{ description }}">
+{%- endif %}
+<meta property="og:url" content="{{ page.url | absolute(site.url) }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{%- if image %}
+<meta property="og:image" content="{{ image | absolute(site.url) }}">
+{%- endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title or site.title }}">
+{%- if description %}
+<meta name="twitter:description" content="{{ description }}">
+{%- endif %}
+<link rel="icon" href="{{ site.avatar }}">
+<link rel="stylesheet" href="{{ site.fonts }}" media="all">
+<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" media="all">
+<link rel="stylesheet" href="/assets/css/author.css" media="all">
+<link rel="stylesheet" href="/assets/css/vangmar.css" media="all">
+</head>
+
+<body id="author" class="{{ bodyClass }}">
+<a class="skip-content" href="#main">{{ t.skipToContent }}</a>
+<div id="overflow-container" class="overflow-container">
+	<div class="max-width">
+		<div id="main-sidebar" class="main-sidebar">
+{% include "partials/header.njk" %}
+{% include "partials/sidebar.njk" %}
+		</div>
+		<section id="main" class="main" role="main">
+{{ content | safe }}
+		</section><!-- .main -->
+{% include "partials/footer.njk" %}
+	</div>
+</div>
+<script src="/assets/js/navigation.js" defer></script>
+</body>
+</html>

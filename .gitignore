@@ -1,0 +1,16 @@
+# Build output
+_site/
+
+# Dependencies
+node_modules/
+
+# Source WordPress export — conversion input only, never published.
+# Keep locally; not committed (hundreds of MB of legacy uploads).
+_import/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

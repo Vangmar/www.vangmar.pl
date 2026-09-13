@@ -1,0 +1,28 @@
+/*
+ * Additions on top of the vendored Author theme stylesheet (author.css).
+ * Keep this file small — it is the only place the rebuild deviates from the
+ * original theme, so anything here should be a deliberate, documented choice.
+ */
+
+/*
+ * Responsive video embeds.
+ *
+ * WordPress did this with the theme's fitVids jQuery plugin, which wrapped
+ * every iframe in a padding-ratio div at runtime. `aspect-ratio` achieves the
+ * same result in CSS, so the static site needs no JavaScript for it.
+ */
+.post-content iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* Featured images and in-content media never overflow their column. */
+.featured-image img,
+.post-content img {
+  max-width: 100%;
+  height: auto;
+}

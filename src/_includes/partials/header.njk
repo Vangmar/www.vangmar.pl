@@ -1,0 +1,44 @@
+{%- set t = i18n[lang] -%}
+			<header class="site-header" id="site-header" role="banner">
+				<div id="title-container" class="title-container">
+					<div id="site-avatar" class="site-avatar" style="background-image: url('{{ site.avatar }}')"></div>
+					<div class="container">
+						<div id="site-title" class="site-title"><a href="{{ t.home }}">{{ site.title }}</a></div>
+					</div>
+				</div>
+				<button id="toggle-navigation" class="toggle-navigation" aria-expanded="false">
+					<span class="screen-reader-text">{{ t.openPrimaryMenu }}</span>
+					<i class="fas fa-bars"></i>
+				</button>
+				<div class="social-media-icons">
+					<ul>
+						<li>
+							<a class="facebook" target="_blank" rel="noopener" href="{{ site.social.facebook }}">
+								<i class="fab fa-facebook-square"></i>
+								<span class="screen-reader-text">facebook</span>
+							</a>
+						</li>
+						<li>
+							<a class="email" href="mailto:{{ site.social.email }}">
+								<i class="fas fa-envelope"></i>
+								<span class="screen-reader-text">email</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="menu-primary" class="menu-container menu-primary" role="navigation">
+					<nav class="menu">
+						<ul id="menu-primary-items" class="menu-primary-items">
+{%- for item in t.menu %}
+							<li class="menu-item{% if item.url == page.url %} current-menu-item{% endif %}"><a href="{{ item.url }}"{% if item.url == page.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+{%- endfor %}
+{#- Language switcher. On a translated post it points at the counterpart post,
+    matching Polylang's behaviour; elsewhere it falls back to the language home. -#}
+{%- for code, l in i18n %}
+{%- set target = translation.url if (translation and translation.lang == code) else (page.url if code == lang else l.home) %}
+							<li class="lang-item lang-item-{{ code }} menu-item{% if code == lang %} current-lang{% endif %}"><a href="{{ target }}" hreflang="{{ l.htmlLang }}" lang="{{ l.htmlLang }}">{{ "English" if code == "en" else "Polski" }}</a></li>
+{%- endfor %}
+						</ul>
+					</nav>
+				</div>
+			</header>

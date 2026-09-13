@@ -1,0 +1,21 @@
+{%- set t = i18n[lang] -%}
+{%- set langPosts = collections.postsByDate | byLang(lang) -%}
+			<aside class="sidebar sidebar-primary" id="sidebar-primary" role="complementary">
+				<h1 class="screen-reader-text">{{ t.sidebar }}</h1>
+				<section class="widget widget_recent_entries">
+					<h2 class="widget-title">{{ t.recentPosts }}</h2>
+					<ul>
+{%- for post in langPosts | take(3) %}
+						<li><a href="{{ post.url }}"{% if post.url == page.url %} aria-current="page"{% endif %}>{{ post.data.title }}</a></li>
+{%- endfor %}
+					</ul>
+				</section>
+				<section class="widget widget_archive">
+					<h2 class="widget-title">{{ t.archives }}</h2>
+					<ul>
+{%- for month in langPosts | archiveMonths %}
+						<li><a href="{{ month | monthUrl(lang) }}">{{ month | monthLabel(lang) }}</a></li>
+{%- endfor %}
+					</ul>
+				</section>
+			</aside>
