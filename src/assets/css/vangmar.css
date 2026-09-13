@@ -5,6 +5,29 @@
  */
 
 /*
+ * Sidebar background.
+ *
+ * The Author theme paints the dark column with #27292B; this takes it to black.
+ *
+ * Two rules are needed, not one. `.main-sidebar` is the column itself, but it
+ * only stretches as far as its own content: on a long page, and along the left
+ * edge on screens wider than the 1400px layout, what shows is the `body`
+ * background. The theme gives both the same colour, so overriding only the
+ * sidebar would leave a slightly different dark below it.
+ *
+ * Deliberately scoped to those two: #27292B is also the theme's body text,
+ * link, button and tag-pill colour, which stay as they were.
+ */
+:root {
+  --sidebar-background: #000;
+}
+
+body,
+.main-sidebar {
+  background: var(--sidebar-background);
+}
+
+/*
  * Responsive video embeds.
  *
  * WordPress did this with the theme's fitVids jQuery plugin, which wrapped
