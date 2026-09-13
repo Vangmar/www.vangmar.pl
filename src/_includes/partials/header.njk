@@ -1,7 +1,12 @@
 {%- set t = i18n[lang] -%}
 			<header class="site-header" id="site-header" role="banner">
 				<div id="title-container" class="title-container">
-					<div id="site-avatar" class="site-avatar" style="background-image: url('{{ site.avatar }}')"></div>
+{#-
+  The avatar is a CSS background rather than an <img>, so it needs the `url`
+  filter applied by hand: HtmlBasePlugin rewrites href/src/srcset attributes for
+  the path prefix, but not URLs inside a style attribute.
+-#}
+					<div id="site-avatar" class="site-avatar" style="background-image: url('{{ site.avatar | url }}')"></div>
 					<div class="container">
 						<div id="site-title" class="site-title"><a href="{{ t.home }}">{{ site.title }}</a></div>
 					</div>
