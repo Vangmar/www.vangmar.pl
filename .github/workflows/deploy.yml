@@ -18,6 +18,24 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  # ---------------------------------------------------------------------------
+  # WHERE THE SITE IS SERVED FROM — the one line to change at the DNS cutover.
+  #
+  # Until the vangmar.pl custom domain is active, GitHub serves this repository
+  # as a *project* site under its own name:
+  #
+  #     https://vangmar.github.io/www.vangmar.pl/
+  #
+  # so every internal link needs that prefix or it 404s.
+  #
+  # ON CUTOVER: once Settings -> Pages shows the vangmar.pl custom domain, the
+  # site moves to the domain root. Change this to "/" — otherwise every link and
+  # image on the live site will point at a /www.vangmar.pl/ path that no longer
+  # exists.
+  # ---------------------------------------------------------------------------
+  PATH_PREFIX: "/www.vangmar.pl/"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,10 +58,30 @@ jobs:
       # CNAME must survive into the published artifact or GitHub Pages drops the
       # custom domain; it is copied from src/ by the Eleventy build, so fail loudly
       # here rather than discovering the domain has reset after deploying.
-      - name: Verify the custom domain file
+      # The path prefix and the custom domain are two halves of one decision, so
+      # a single setting drives both and they can never disagree:
+      #
+      #   PATH_PREFIX = "/"          -> custom domain; ship CNAME
+      #   PATH_PREFIX = "/<repo>/"   -> github.io project URL; drop CNAME
+      #
+      # Dropping CNAME while previewing matters: GitHub reads that file from the
+      # deployed artifact and switches the site to the custom domain, which would
+      # redirect the preview to a domain whose DNS still points at the old
+      # WordPress host — making the site look broken.
+      - name: Match the custom domain to the path prefix
         run: |
-          test -f _site/CNAME || { echo "::error::_site/CNAME is missing"; exit 1; }
-          echo "CNAME -> $(cat _site/CNAME)"
+          prefix="${PATH_PREFIX:-/}"
+          echo "PATH_PREFIX -> ${prefix}"
+
+          if [ "${prefix}" = "/" ]; then
+            test -f _site/CNAME || { echo "::error::_site/CNAME is missing"; exit 1; }
+            echo "serving at the domain root; CNAME -> $(cat _site/CNAME)"
+          else
+            rm -f _site/CNAME
+            echo "::warning::Preview build under ${prefix} — CNAME withheld so \
+          the custom domain stays unset. Set PATH_PREFIX to \"/\" in \
+          .github/workflows/deploy.yml at the DNS cutover."
+          fi
 
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@v5

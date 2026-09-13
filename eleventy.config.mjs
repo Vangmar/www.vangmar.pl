@@ -5,6 +5,22 @@
 // media. Post URLs are therefore never derived from file paths — each post
 // declares its exact legacy address in a `permalink:` front matter field.
 
+import { HtmlBasePlugin } from "@11ty/eleventy";
+
+/**
+ * Where the site is served from.
+ *
+ * At the real domain this is "/" and everything below is a no-op. But a GitHub
+ * Pages *project* site is served under the repository name — currently
+ * https://vangmar.github.io/www.vangmar.pl/ — where root-relative paths such as
+ * /assets/css/author.css resolve to the wrong place and 404. Setting
+ * PATH_PREFIX makes the build emit that prefix on every internal link.
+ *
+ * This only affects generated links, never the output file layout, so the
+ * permalinks that must be preserved are unaffected either way.
+ */
+const PATH_PREFIX = process.env.PATH_PREFIX || "/";
+
 const PL_MONTHS = [
   "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec",
   "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień",
@@ -35,6 +51,17 @@ function dateParts(date) {
 }
 
 export default function (eleventyConfig) {
+  /*
+   * Rewrites root-relative URLs in the generated HTML to sit under PATH_PREFIX.
+   *
+   * Templates alone cannot do this: post bodies are stored as the original
+   * WordPress HTML, so their <img src="/wp-content/uploads/..."> attributes
+   * never pass through a template filter. This plugin rewrites the finished
+   * HTML instead, which catches those too. With PATH_PREFIX at its "/" default
+   * it changes nothing.
+   */
+  eleventyConfig.addPlugin(HtmlBasePlugin);
+
   // Assets keep their original WordPress paths (/wp-content/uploads/...) so that
   // image URLs shared to Pinterest and Facebook resolve unchanged.
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -133,6 +160,7 @@ export default function (eleventyConfig) {
   });
 
   return {
+    pathPrefix: PATH_PREFIX,
     dir: {
       input: "src",
       output: "_site",

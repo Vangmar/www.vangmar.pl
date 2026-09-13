@@ -34,17 +34,41 @@ npm run build    # writes _site/
 Every push to `main` builds and deploys through
 `.github/workflows/deploy.yml`.
 
-### One-time GitHub setup
+### Where the site is served from
+
+Until the custom domain is live, GitHub serves this repository as a *project*
+site under its own name — `https://vangmar.github.io/www.vangmar.pl/` — not at a
+domain root. Root-relative paths like `/assets/css/author.css` would 404 there,
+so the build takes a `PATH_PREFIX` environment variable:
+
+```bash
+PATH_PREFIX=/www.vangmar.pl/ npm run build   # github.io preview
+npm run build                                # the real domain (default "/")
+```
+
+`PATH_PREFIX` only rewrites generated links; it never changes the output file
+layout, so the preserved permalinks are identical either way.
+
+`.github/workflows/deploy.yml` sets it in one place, at the top of the file. It
+also controls whether `CNAME` ships: GitHub reads that file from the deployed
+artifact and switches the site to the custom domain, which during preview would
+redirect to a domain whose DNS still points at the old WordPress host. The two
+settings therefore move together and cannot disagree.
+
+### Going live on vangmar.pl
 
 1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. **Settings → Pages → Custom domain: `vangmar.pl`**, then enable
-   *Enforce HTTPS* once the certificate is issued.
+2. Check the deployed preview at `https://vangmar.github.io/www.vangmar.pl/`.
 3. Point DNS at GitHub Pages — apex `A`/`AAAA` records to GitHub's Pages
-   addresses, plus a `www` `CNAME` to `<owner>.github.io` so that
+   addresses, plus a `www` `CNAME` to `vangmar.github.io` so that
    `www.vangmar.pl` keeps redirecting to the apex.
+4. **Set `PATH_PREFIX` to `"/"` in `.github/workflows/deploy.yml`** and push.
+   This is the cutover: it restores root-relative links and ships `CNAME`.
+5. **Settings → Pages → Custom domain: `vangmar.pl`**, then enable
+   *Enforce HTTPS* once the certificate is issued.
 
-Do the DNS switch **last**, after checking the deployed site on its
-`github.io` address.
+Do the DNS change **before** step 4 but after step 2 — nothing about the live
+blog changes until DNS moves, so there is no window where it is down.
 
 ## Adding a post
 
