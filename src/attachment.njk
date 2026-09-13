@@ -17,9 +17,11 @@ permalink: "{{ attachment.permalink }}"
 layout: layouts/base.njk
 lang: en
 bodyClass: attachment wp-singular attachment-template-default single single-attachment wp-theme-author full-post singular singular-attachment
+# `| safe` keeps these raw: computed values are rendered as templates, so
+# escaping here would be applied a second time by the layout that prints them.
 eleventyComputed:
-  title: "{{ attachment.title }}"
-  image: "{{ attachment.image }}"
+  title: "{{ attachment.title | safe }}"
+  image: "{{ attachment.image | safe }}"
 ---
 			<div id="loop-container" class="loop-container">
 				<div class="attachment type-attachment status-inherit hentry entry">

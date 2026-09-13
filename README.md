@@ -8,13 +8,16 @@ Static rebuild of the Vangmar.pl WordPress blog (English + Polish), built with
 The blog's addresses are linked from Facebook, Pinterest and YouTube
 descriptions, so every URL WordPress served must keep working:
 
-| Kind            | Example                            |
-| --------------- | ---------------------------------- |
-| English post    | `/leaf-creatures/`                 |
-| Polish post     | `/pl/lisciaki/`                     |
-| Language homes  | `/` and `/pl/`                      |
-| Month archives  | `/2023/11/` and `/pl/2025/06/`      |
-| Media           | `/wp-content/uploads/2025/06/…`     |
+| Kind               | Example                                       |
+| ------------------ | --------------------------------------------- |
+| English post       | `/leaf-creatures/`                            |
+| Polish post        | `/pl/lisciaki/`                                |
+| Language homes     | `/` and `/pl/`, paged at `/page/2/`            |
+| Month archives     | `/2023/11/` and `/pl/2025/06/`                 |
+| Category archives  | `/category/icrpg/icrpg-intro-en/`              |
+| Tag archives       | `/tag/crafting-tutorial/`, `/pl/tag/tutorial/` |
+| Gallery attachment | `/forests-of-gajen/20231029_100415/`           |
+| Media              | `/wp-content/uploads/2025/06/…`                |
 
 Post addresses are therefore **never derived from file names**. Each post states
 its exact address in a `permalink:` field, and media keeps its original
@@ -155,7 +158,8 @@ src/
   posts/en|pl/    46 posts
   wp-content/     media, at its original WordPress paths
   index.njk       English blog loop   pl/index.njk    Polish blog loop
-  date-archive.njk  month archives    attachment.njk  gallery attachment pages
+  archive.njk     month, category and tag archives
+  attachment.njk  gallery attachment pages
   sitemap.njk     sitemap.xml
 tools/
   migration-manifest.json  permalinks, publish instants and EN/PL pairings
@@ -164,6 +168,40 @@ tools/
   sync-media.mjs           resolves media the built site references
 _import/          the WordPress export (git-ignored, local only)
 ```
+
+## Archives
+
+Month, category and tag archives all come from one `archives` collection in
+`eleventy.config.mjs`, rendered by `src/archive.njk`. The collection chunks each
+term into the ten-posts-per-page WordPress used, because Eleventy cannot
+paginate inside a pagination — one entry is one finished page, carrying the
+sibling links it needs.
+
+Nested categories need no special handling: every post in a child category is
+*also* explicitly assigned to its parent, so listing posts by direct assignment
+reproduces the counts the live site shows.
+
+All 19 categories and 122 tags are generated and were checked page by page
+against the live site — entry counts, `<title>` and archive heading all match.
+
+Six categories exist in WordPress with no posts (`/category/basics/`,
+`/category/burza/`, `/category/crafting-tutorial/`, `/category/minis/`,
+`/category/room-design/`, `/category/wladca-snow/`). They are not generated:
+they have no content and nothing links to them, and WordPress is itself
+inconsistent about them — some return an empty archive, others already 404.
+
+One cosmetic difference remains, on `/tag/players-card/`. WordPress renders that
+tag as `player's card` in a post's tag list but `player’s card` (curly
+apostrophe) in the archive heading, because only the heading goes through
+`wptexturize`. The rebuild uses the straight apostrophe consistently in both
+places.
+
+## Search engine indexing
+
+**The live WordPress site sends `noindex, nofollow` on every page**, which is
+the "Discourage search engines from indexing this site" setting left switched
+on. This rebuild does not emit that tag, so the new site is indexable. If that
+is not wanted, add the meta tag back in `src/_includes/layouts/base.njk`.
 
 ## What the rebuild deliberately drops
 

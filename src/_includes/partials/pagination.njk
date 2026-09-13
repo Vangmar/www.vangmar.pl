@@ -1,24 +1,28 @@
 {#-
-  Blog-loop pagination, reproducing WordPress' markup so the theme's existing
-  styles apply: Previous, a numbered link per page with the current one as a
-  span, then Next.
+  Reproduces WordPress' pagination markup so the theme's existing styles apply:
+  Previous, a numbered link per page with the current one as a span, then Next.
+
+  Expects `pageHrefs` (every page's URL, in order) and `pageIndex` (zero-based).
+  Two callers supply those differently — the blog loop from Eleventy's own
+  `pagination` object, the archives from links precomputed in the collection —
+  so the partial takes the plain values rather than either shape.
 -#}
-{%- if pagination.hrefs.length > 1 %}
+{%- if pageHrefs.length > 1 %}
 			<nav class="navigation pagination" aria-label="Posts pagination">
 				<h2 class="screen-reader-text">Posts pagination</h2>
 				<div class="nav-links">
-{%- if pagination.href.previous %}
-					<a class="prev page-numbers" href="{{ pagination.href.previous }}">Previous</a>
+{%- if pageIndex > 0 %}
+					<a class="prev page-numbers" href="{{ pageHrefs[pageIndex - 1] }}">Previous</a>
 {%- endif %}
-{%- for href in pagination.hrefs %}
-{%- if loop.index0 == pagination.pageNumber %}
+{%- for href in pageHrefs %}
+{%- if loop.index0 == pageIndex %}
 					<span aria-current="page" class="page-numbers current">{{ loop.index }}</span>
 {%- else %}
 					<a class="page-numbers" href="{{ href }}">{{ loop.index }}</a>
 {%- endif %}
 {%- endfor %}
-{%- if pagination.href.next %}
-					<a class="next page-numbers" href="{{ pagination.href.next }}">Next</a>
+{%- if pageIndex < pageHrefs.length - 1 %}
+					<a class="next page-numbers" href="{{ pageHrefs[pageIndex + 1] }}">Next</a>
 {%- endif %}
 				</div>
 			</nav>

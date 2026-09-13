@@ -3,26 +3,8 @@ layout: layouts/base.njk
 ---
 {%- set t = i18n[lang] -%}
 			<div class="archive-header">
-				<i class="fas fa-calendar" aria-hidden="true"></i>
-				<h1>Month: <span>{{ archive.date | monthLabel(lang) }}</span></h1>
+				<i class="fas fa-{{ "calendar" if archive.kind == "month" else ("folder-open" if archive.kind == "category" else "tag") }}" aria-hidden="true"></i>
+				<h1>{{ t.archiveLabel[archive.kind] }}: <span>{{ archive.name }}</span></h1>
 			</div>
-			<div id="loop-container" class="loop-container">
-{%- for post in archive.posts %}
-				<div class="post type-post status-publish format-standard{% if post.data.image %} has-post-thumbnail{% endif %} hentry entry">
-{%- if post.data.image %}
-					<div class="featured-image">
-						<a href="{{ post.url }}" tabindex="-1">{{ post.data.title }}<img src="{{ post.data.image }}" class="attachment-full size-full wp-post-image" alt="{{ post.data.imageAlt | default('', true) }}"{% if post.data.imageWidth %} width="{{ post.data.imageWidth }}"{% endif %}{% if post.data.imageHeight %} height="{{ post.data.imageHeight }}"{% endif %}></a>
-					</div>
-{%- endif %}
-					<article>
-						<div class="post-header">
-							<h2 class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-							<span class="post-meta">{{ t.publishedOn }} <span class="date"><a href="{{ post.date | monthUrl(lang) }}">{{ post.date | postDate(lang) }}</a></span></span>
-						</div>
-						<div class="post-content">
-{{ post.templateContent | safe }}
-						</div>
-					</article>
-				</div>
-{%- endfor %}
-			</div>
+{% set loopPosts = archive.posts %}{% include "partials/post-loop.njk" %}
+{% set pageHrefs = archive.hrefs %}{% set pageIndex = archive.pageNumber %}{% include "partials/pagination.njk" %}

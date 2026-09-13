@@ -8,5 +8,7 @@ pagination:
 permalink: "{% if pagination.pageNumber == 0 %}/pl/{% else %}/pl/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 layout: layouts/home.njk
 lang: pl
+eleventyComputed:
+  pageNumber: "{{ pagination.pageNumber }}"
 bodyClass: home blog wp-theme-author full-post
 ---

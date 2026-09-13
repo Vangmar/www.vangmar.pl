@@ -3,7 +3,18 @@
 <html lang="{{ t.htmlLang }}">
 <head>
 <meta charset="UTF-8">
-<title>{% if title and not isHome %}{{ title }} &#8211; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+{#-
+  Titles follow WordPress exactly, including where the paged suffix sits:
+    /                         Vangmar.pl
+    /page/2/                  Vangmar.pl – Page 2
+    /pl/page/2/               Vangmar.pl – Strona 2
+    /leaf-creatures/          Leaf Creatures – Vangmar.pl
+    /category/…/page/2/       Crafting tutorial – Page 2 – Vangmar.pl
+  `pageNumber` is zero-based and set only by the paginated templates.
+-#}
+{%- set pageNo = (pageNumber | default(0) | int) + 1 -%}
+{%- set paged = " &#8211; " + t.pageWord + " " + pageNo if pageNo > 1 else "" -%}
+<title>{% if isHome %}{{ site.title }}{{ paged | safe }}{% else %}{{ title }}{{ paged | safe }} &#8211; {{ site.title }}{% endif %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {%- if description %}
 <meta name="description" content="{{ description }}">

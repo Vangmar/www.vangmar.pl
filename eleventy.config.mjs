@@ -37,6 +37,12 @@ function ordinal(day) {
   return { 1: "st", 2: "nd", 3: "rd" }[day % 10] ?? "th";
 }
 
+/** "November 2023" / "czerwiec 2025" — how WordPress labelled month archives. */
+function monthLabel(date, lang) {
+  const months = lang === "pl" ? PL_MONTHS : EN_MONTHS;
+  return `${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+}
+
 /**
  * Dates are read from front matter as plain `YYYY-MM-DD` local wall-clock
  * dates, so they must be formatted in UTC — using local getters would shift
@@ -78,12 +84,8 @@ export default function (eleventyConfig) {
     return `${day}${ordinal(day)} ${months[month]} ${year}`;
   });
 
-  // "November 2023" / "czerwiec 2025" — archive widget labels.
-  eleventyConfig.addFilter("monthLabel", (date, lang = "en") => {
-    const { year, month } = dateParts(date);
-    const months = lang === "pl" ? PL_MONTHS : EN_MONTHS;
-    return `${months[month]} ${year}`;
-  });
+  // Archives widget labels, sharing one implementation with the collection.
+  eleventyConfig.addFilter("monthLabel", (date, lang = "en") => monthLabel(date, lang));
 
   // WordPress date archives: /2023/11/ (en) and /pl/2023/11/ (pl).
   eleventyConfig.addFilter("monthUrl", (date, lang = "en") => {
@@ -146,27 +148,77 @@ export default function (eleventyConfig) {
   }
 
   /**
-   * One entry per (language, month) that has posts, newest first, for the
-   * WordPress month archives at /2023/11/ and /pl/2025/06/.
+   * Every archive page on the site: month, category and tag, in both languages.
+   *
+   * WordPress paginated archives at ten posts per page, so a term with more than
+   * ten posts becomes several pages (/category/crafting-tutorial-en/page/2/).
+   * Eleventy cannot paginate within a pagination, so the chunking is done here
+   * and each entry represents one finished page, carrying the sibling links it
+   * needs to render its own pagination.
+   *
+   * Category nesting needs no special handling: every post in a child category
+   * is also explicitly assigned to its parent, which is why the parent archives
+   * here hold the same posts the live WordPress site shows.
    */
-  eleventyConfig.addCollection("dateArchives", (collectionApi) => {
+  eleventyConfig.addCollection("archives", (collectionApi) => {
     const posts = collectionApi
       .getFilteredByTag("post")
       .sort((a, b) => b.date - a.date);
 
-    const groups = new Map();
+    /** term url -> the archive it will become */
+    const terms = new Map();
+    const term = (url, fields) => {
+      if (!terms.has(url)) terms.set(url, { url, posts: [], ...fields });
+      return terms.get(url);
+    };
+
     for (const post of posts) {
-      const key = [
-        post.data.lang,
+      const lang = post.data.lang;
+
+      const monthUrl = [
+        lang === "pl" ? "/pl" : "",
         post.date.getUTCFullYear(),
-        post.date.getUTCMonth(),
-      ].join("-");
-      if (!groups.has(key)) {
-        groups.set(key, { lang: post.data.lang, date: post.date, posts: [] });
+        String(post.date.getUTCMonth() + 1).padStart(2, "0"),
+        "",
+      ].join("/");
+      term(monthUrl, {
+        kind: "month",
+        lang,
+        name: monthLabel(post.date, lang),
+        bodyClass: "archive date",
+      }).posts.push(post);
+
+      for (const [kind, field] of [["category", "categories"], ["tag", "postTags"]]) {
+        for (const item of post.data[field] ?? []) {
+          const slug = item.url.replace(/\/$/, "").split("/").pop();
+          term(item.url, {
+            kind,
+            lang,
+            name: item.name,
+            bodyClass: `archive ${kind} ${kind}-${slug}`,
+          }).posts.push(post);
+        }
       }
-      groups.get(key).posts.push(post);
     }
-    return [...groups.values()];
+
+    const PER_PAGE = 10;
+    const pages = [];
+    for (const archive of terms.values()) {
+      const total = Math.max(1, Math.ceil(archive.posts.length / PER_PAGE));
+      const hrefs = Array.from({ length: total }, (_, i) =>
+        i === 0 ? archive.url : `${archive.url}page/${i + 1}/`);
+
+      for (let i = 0; i < total; i += 1) {
+        pages.push({
+          ...archive,
+          posts: archive.posts.slice(i * PER_PAGE, (i + 1) * PER_PAGE),
+          pageNumber: i,
+          hrefs,
+          permalink: hrefs[i],
+        });
+      }
+    }
+    return pages;
   });
 
   return {

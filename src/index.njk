@@ -9,5 +9,7 @@ pagination:
 permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 layout: layouts/home.njk
 lang: en
+eleventyComputed:
+  pageNumber: "{{ pagination.pageNumber }}"
 bodyClass: home blog wp-theme-author full-post
 ---

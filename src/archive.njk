@@ -1,0 +1,24 @@
+---
+# Every WordPress archive: month, category and tag, in both languages.
+#
+# The `archives` collection has already chunked each term into ten-post pages,
+# so one entry here is one finished page and this template just places it at its
+# WordPress address.
+pagination:
+  data: collections.archives
+  size: 1
+  alias: archive
+permalink: "{{ archive.permalink }}"
+layout: layouts/archive.njk
+#
+# `| safe` is load bearing on the text fields. These computed values are
+# themselves rendered as Nunjucks templates, so without it a term like
+# "d&d terrain" is escaped here and escaped again when the layout prints it,
+# reaching the page as "d&amp;amp;d terrain". Escaping belongs to the layout
+# that emits the markup; these produce the raw value.
+eleventyComputed:
+  lang: "{{ archive.lang }}"
+  title: "{{ archive.name | safe }}"
+  pageNumber: "{{ archive.pageNumber }}"
+  bodyClass: "{{ archive.bodyClass | safe }} wp-theme-author full-post"
+---

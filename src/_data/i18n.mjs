@@ -29,6 +29,11 @@ export default {
     recentPosts: "Recent Posts",
     archives: "Archives",
     postsHeading: "Vangmar.pl Posts",
+    // Archive headings and the paged-title suffix. Polylang did translate these
+    // three, unlike the theme strings above — "Tag" is simply the same word in
+    // Polish, not an untranslated string.
+    pageWord: "Page",
+    archiveLabel: { category: "Category", tag: "Tag", month: "Month" },
     menu: [
       { label: "Home", url: "/" },
       { label: "Forests of Gajen", url: "/category/forests-of-gajen/" },
@@ -45,6 +50,8 @@ export default {
     recentPosts: "Ostatnie wpisy",
     archives: "Archiwa",
     postsHeading: "Vangmar.pl Posts",
+    pageWord: "Strona",
+    archiveLabel: { category: "Kategoria", tag: "Tag", month: "Miesiąc" },
     menu: [
       { label: "Vangmar.pl", url: "/pl/" },
       { label: "Burza", url: "/pl/category/burza-pl/" },
