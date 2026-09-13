@@ -20,21 +20,23 @@ concurrency:
 
 env:
   # ---------------------------------------------------------------------------
-  # WHERE THE SITE IS SERVED FROM — the one line to change at the DNS cutover.
+  # WHERE THE SITE IS SERVED FROM.
   #
-  # Until the vangmar.pl custom domain is active, GitHub serves this repository
-  # as a *project* site under its own name:
+  # "/" means the site is served at the root of its own domain, which is the
+  # arrangement vangmar.pl needs: every legacy URL is an absolute path on that
+  # domain, so internal links must carry no prefix. This also makes the build
+  # ship CNAME, which is what tells GitHub Pages the custom domain.
+  #
+  # The alternative is the repository-name prefix "/www.vangmar.pl/", for
+  # serving from the github.io project URL instead:
   #
   #     https://vangmar.github.io/www.vangmar.pl/
   #
-  # so every internal link needs that prefix or it 404s.
-  #
-  # ON CUTOVER: once Settings -> Pages shows the vangmar.pl custom domain, the
-  # site moves to the domain root. Change this to "/" — otherwise every link and
-  # image on the live site will point at a /www.vangmar.pl/ path that no longer
-  # exists.
+  # where root-relative paths such as /assets/css/author.css would otherwise
+  # 404. In that mode CNAME is withheld, so the custom domain stays unset and
+  # the preview is not redirected to a domain that may not point here yet.
   # ---------------------------------------------------------------------------
-  PATH_PREFIX: "/www.vangmar.pl/"
+  PATH_PREFIX: "/"
 
 jobs:
   build:
