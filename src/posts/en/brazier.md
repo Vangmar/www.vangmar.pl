@@ -1,0 +1,43 @@
+---
+title: "Brazier"
+permalink: "/brazier/"
+date: "2018-11-17T23:13:43Z"
+translationKey: "brazier"
+description: "https://www.youtube.com/watch?v=viZmyZgYSyQ Checkout quick tutorial, how to enrich your dungeon with the light of the coke oven. Step by step mine brazier. Running the deepest Underdark adventures I always ask myself: what is the source of"
+categories:
+  - { name: "Crafting tutorial", url: "/category/crafting-tutorial-en/" }
+postTags:
+  - { name: "brazier", url: "/tag/brazier/" }
+  - { name: "coke oven", url: "/tag/coke-oven/" }
+  - { name: "crafting tutorial", url: "/tag/crafting-tutorial/" }
+  - { name: "led terrain", url: "/tag/led-terrain/" }
+  - { name: "Underdark", url: "/tag/underdark/" }
+---
+
+<p><iframe title="#3 Brazier" width="500" height="281" src="https://www.youtube.com/embed/viZmyZgYSyQ?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></p>
+<p>Checkout quick tutorial, how to enrich your dungeon with the light of the coke oven. Step by step mine brazier.</p>
+<p><span id="more-470"></span></p>
+<p>Running the deepest Underdark adventures I always ask myself: what is the source of light? And here, I like to share with you all quick guide for mine brazier. I’ve started from simple LED light.</p>
+<p><img fetchpriority="high" decoding="async" class="alignnone wp-image-472 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_140151_1-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_140151_1-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_140151_1-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_140151_1-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_140151_1-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_140151_1-600x450.jpg 600w" sizes="(max-width: 736px) 100vw, 736px"></p>
+<p>A bit of PVA glue and some stone topping did the first part of a job.</p>
+<p><img decoding="async" class="alignnone wp-image-473 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_140907-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_140907-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_140907-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_140907-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_140907-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_140907-600x450.jpg 600w" sizes="(max-width: 736px) 100vw, 736px"></p>
+<p>The next step is to use popsicle sticks or other soft wood to make a metal basket. You need to cut two sizes of them and glue them to the led light.</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-474 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_141520-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_141520-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_141520-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_141520-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_141520-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_141520-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>After that you need to wait a bit. Make sure your stones are well attached to the plastic cover of LED light. We need to add black base paint on it.</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-475 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_141758-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_141758-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_141758-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_141758-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_141758-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_141758-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>Try to avoid putting paint on the LED diode itself.</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-476 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_145942-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_145942-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_145942-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_145942-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_145942-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_145942-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>In result you should get black braizer.</p>
+<p><img loading="lazy" decoding="async" class="wp-image-478 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_150411_1-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_150411_1-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_150411_1-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_150411_1-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_150411_1-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_150411_1-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-479 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_150938-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_150938-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_150938-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_150938-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_150938-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_150938-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>It already looks nice even without any additional work, but…</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-480 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_151932-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_151932-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_151932-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_151932-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_151932-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_151932-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>With a grain of silver or copper layer it will look more proper for deep Underdark.</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-481 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_152716-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_152716-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_152716-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_152716-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_152716-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_152716-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>I’ve also added copper chain around braizer.</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-482 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_153811-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_153811-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_153811-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_153811-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_153811-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_153811-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>It is also good idea to put a light drop of yellow paint around dark coal parts in the center. LED glow will be more bright. Quick black dry brushing on metal parts will make everything older.</p>
+<p><img loading="lazy" decoding="async" class="alignnone wp-image-483 size-large" src="/wp-content/uploads/2018/11/IMG_20181101_154451_1-1024x768.jpg" alt="" width="736" height="552" srcset="/wp-content/uploads/2018/11/IMG_20181101_154451_1-1024x768.jpg 1024w, /wp-content/uploads/2018/11/IMG_20181101_154451_1-300x225.jpg 300w, /wp-content/uploads/2018/11/IMG_20181101_154451_1-768x576.jpg 768w, /wp-content/uploads/2018/11/IMG_20181101_154451_1-1400x1050.jpg 1400w, /wp-content/uploads/2018/11/IMG_20181101_154451_1-600x450.jpg 600w" sizes="auto, (max-width: 736px) 100vw, 736px"></p>
+<p>And here is the final result! Enjoy!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

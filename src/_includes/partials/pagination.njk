@@ -1,0 +1,25 @@
+{#-
+  Blog-loop pagination, reproducing WordPress' markup so the theme's existing
+  styles apply: Previous, a numbered link per page with the current one as a
+  span, then Next.
+-#}
+{%- if pagination.hrefs.length > 1 %}
+			<nav class="navigation pagination" aria-label="Posts pagination">
+				<h2 class="screen-reader-text">Posts pagination</h2>
+				<div class="nav-links">
+{%- if pagination.href.previous %}
+					<a class="prev page-numbers" href="{{ pagination.href.previous }}">Previous</a>
+{%- endif %}
+{%- for href in pagination.hrefs %}
+{%- if loop.index0 == pagination.pageNumber %}
+					<span aria-current="page" class="page-numbers current">{{ loop.index }}</span>
+{%- else %}
+					<a class="page-numbers" href="{{ href }}">{{ loop.index }}</a>
+{%- endif %}
+{%- endfor %}
+{%- if pagination.href.next %}
+					<a class="next page-numbers" href="{{ pagination.href.next }}">Next</a>
+{%- endif %}
+				</div>
+			</nav>
+{%- endif %}

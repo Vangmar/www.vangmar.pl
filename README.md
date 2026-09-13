@@ -96,46 +96,72 @@ matching partner, and the switcher falls back to the other language's home page.
 `date` is the UTC publish instant. It controls ordering as well as the displayed
 date, so posts published on the same day keep their original sequence.
 
-## Importing the remaining WordPress posts
+## The migration from WordPress
 
-The original WordPress export lives in `_import/static-export/` and is **not**
-committed — it is 586 MB, mostly legacy media. Keep a local copy to import from.
+All 46 posts have been imported. The original export lives in
+`_import/static-export/` and is **not** committed — it is 586 MB, mostly legacy
+media. Keep a local copy if you need to re-run the import.
+
+`tools/migration-manifest.json` is the record of what the WordPress site
+contained: every post's permalink, publish instant and EN/PL pairing. It is what
+the import is driven from, and re-running is safe and idempotent:
+
+```bash
+node tools/import-all.mjs      # rewrite all post files from the export
+npm run build
+node tools/sync-media.mjs      # fetch any uploads the build references
+npm run build                  # pick up the new files
+```
+
+To import a single post by hand:
 
 ```bash
 node tools/import-post.mjs _import/static-export/<slug>/index.html \
   --date=2023-11-01T12:00:00Z --key=<shared-translation-key>
 ```
 
-The script reads the archived page, rewrites absolute `https://vangmar.pl/`
-references to root-relative paths, and writes a front-mattered Markdown file. It
-does not copy images — it prints the uploads the post needs, so media is added
-deliberately rather than dragging in all 576 MB at once.
-
-Publish timestamps come from the live WordPress REST API, which is still up:
+Publish timestamps come from the live WordPress REST API, which is still up —
+use the `date_gmt` value with a `Z` suffix:
 
 ```
 https://vangmar.pl/wp-json/wp/v2/posts?slug=<slug>&_fields=slug,date_gmt,link
 ```
 
-Use the `date_gmt` value with a `Z` suffix.
+### Notes on how the import behaves
 
 Post bodies are kept as the original HTML rather than converted to Markdown:
 they contain galleries, `srcset` attributes and embeds whose exact rendering is
 the thing being preserved. New posts can be plain Markdown — Eleventy renders
 both.
 
+Same-site URLs are rewritten to root-relative paths **in attributes only**. Two
+posts print the full address of the Polish quick-start PDF as a link's visible
+text, and the reader should still see the address that was written.
+
+`tools/sync-media.mjs` reads the generated HTML in `_site/` rather than the post
+sources, because posts are not the only thing referencing media — the gallery
+attachment pages pull in thumbnail sizes of their own. Anything the export
+lacks is downloaded from the live site; **that only works while the old server
+is up.** The 2019 wallpapers and the Polish quick-start PDF were missing from
+the export entirely and were recovered this way.
+
 ## Layout
 
 ```
 src/
-  _data/          site settings (site.mjs) and per-language chrome (i18n.mjs)
-  _includes/      base, post, home and archive layouts, plus header/sidebar/footer
+  _data/          site settings, per-language chrome (i18n.mjs), attachments.json
+  _includes/      base, post, home and archive layouts, plus partials
   assets/         vendored Author theme CSS, Font Awesome subset, menu script
-  posts/en|pl/    post content
+  posts/en|pl/    46 posts
   wp-content/     media, at its original WordPress paths
-  index.njk       English home        pl/index.njk   Polish home
-  date-archive.njk  month archives    sitemap.njk    sitemap.xml
-tools/            import-post.mjs — WordPress export importer
+  index.njk       English blog loop   pl/index.njk    Polish blog loop
+  date-archive.njk  month archives    attachment.njk  gallery attachment pages
+  sitemap.njk     sitemap.xml
+tools/
+  migration-manifest.json  permalinks, publish instants and EN/PL pairings
+  import-all.mjs           imports every post in the manifest
+  import-post.mjs          converts one exported page (also a module)
+  sync-media.mjs           resolves media the built site references
 _import/          the WordPress export (git-ignored, local only)
 ```
 
@@ -153,3 +179,25 @@ The Polish pages render the theme's own strings ("Published on", "Previous
 Post") in English. That is not a bug in the rebuild — Polylang only translated
 content, so the live WordPress site does the same, and it is reproduced here to
 keep the migration like-for-like.
+
+Two further deliberate omissions:
+
+- **`/sample-page/`** is not migrated. It is the stock WordPress placeholder
+  ("I'm a bike messenger by day…"), and it links to a dead admin panel.
+- **Gallery attachment pages** are generated only for the eight images the
+  Forests of Gajen gallery actually links to. WordPress also chained every
+  attachment to the next with Previous/Next Image links, reaching images that
+  appear nowhere on the site; recreating that chain would pull in a long tail of
+  pages nothing points at.
+
+### Four posts WordPress never paired
+
+`beholder-painting`, `doorway`, `go-out-of-the-bushes` and `icrpg-hero-cards`
+each have an obvious Polish counterpart (`malowanie-beholdera`, `drzwi`,
+`wylaz-z-krzakow`, `icrpg-karty-postaci`), but Polylang had no translation
+registered for them, so their language switcher points at the Polish home page
+instead of the matching post. That behaviour is reproduced as-is rather than
+quietly corrected.
+
+To link any of these pairs, give both post files the same `translationKey` — the
+switcher and `hreflang` tags follow automatically.

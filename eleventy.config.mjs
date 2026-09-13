@@ -135,6 +135,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("postsByDate", (collectionApi) =>
     collectionApi.getFilteredByTag("post").sort((a, b) => b.date - a.date));
 
+  // Per-language post lists, newest first. The blog loop paginates over these,
+  // so they must be real collections rather than a filter applied in a template.
+  for (const lang of ["en", "pl"]) {
+    eleventyConfig.addCollection(`posts_${lang}`, (collectionApi) =>
+      collectionApi
+        .getFilteredByTag("post")
+        .filter((post) => post.data.lang === lang)
+        .sort((a, b) => b.date - a.date));
+  }
+
   /**
    * One entry per (language, month) that has posts, newest first, for the
    * WordPress month archives at /2023/11/ and /pl/2025/06/.

@@ -1,6 +1,12 @@
 ---
+# The Polish blog loop, mirroring the English one under the /pl/ prefix that
+# Polylang used: page one at /pl/, the rest at /pl/page/N/.
+pagination:
+  data: collections.posts_pl
+  size: 10
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/pl/{% else %}/pl/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 layout: layouts/home.njk
-permalink: /pl/
 lang: pl
 bodyClass: home blog wp-theme-author full-post
 ---

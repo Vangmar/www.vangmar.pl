@@ -1,0 +1,370 @@
+[
+  {
+    "permalink": "/pl/burza/",
+    "lang": "pl",
+    "slug": "burza",
+    "date": "2025-06-11T06:50:11Z",
+    "translationKey": "burza",
+    "source": "_import/static-export/pl/burza/index.html"
+  },
+  {
+    "permalink": "/pl/lisciaki/",
+    "lang": "pl",
+    "slug": "lisciaki",
+    "date": "2025-06-06T14:09:09Z",
+    "translationKey": "leaf-creatures",
+    "source": "_import/static-export/pl/lisciaki/index.html"
+  },
+  {
+    "permalink": "/pl/trujace-grzyby/",
+    "lang": "pl",
+    "slug": "trujace-grzyby",
+    "date": "2025-06-06T14:06:28Z",
+    "translationKey": "poisonous-fungus",
+    "source": "_import/static-export/pl/trujace-grzyby/index.html"
+  },
+  {
+    "permalink": "/pl/forest-of-gajen/",
+    "lang": "pl",
+    "slug": "forest-of-gajen",
+    "date": "2025-06-06T14:02:19Z",
+    "translationKey": "forests-of-gajen",
+    "source": "_import/static-export/pl/forest-of-gajen/index.html"
+  },
+  {
+    "permalink": "/leaf-creatures/",
+    "lang": "en",
+    "slug": "leaf-creatures",
+    "date": "2023-11-17T17:23:04Z",
+    "translationKey": "leaf-creatures",
+    "source": "_import/static-export/leaf-creatures/index.html"
+  },
+  {
+    "permalink": "/poisonous-fungus/",
+    "lang": "en",
+    "slug": "poisonous-fungus",
+    "date": "2023-11-08T16:06:12Z",
+    "translationKey": "poisonous-fungus",
+    "source": "_import/static-export/poisonous-fungus/index.html"
+  },
+  {
+    "permalink": "/forests-of-gajen/",
+    "lang": "en",
+    "slug": "forests-of-gajen",
+    "date": "2023-11-01T11:45:56Z",
+    "translationKey": "forests-of-gajen",
+    "source": "_import/static-export/forests-of-gajen/index.html"
+  },
+  {
+    "permalink": "/pl/icrpg-target-cards-v2-2/",
+    "lang": "pl",
+    "slug": "icrpg-target-cards-v2-2",
+    "date": "2023-07-28T17:53:29Z",
+    "translationKey": "icrpg-target-cards-v2",
+    "source": "_import/static-export/pl/icrpg-target-cards-v2-2/index.html"
+  },
+  {
+    "permalink": "/icrpg-target-cards-v2/",
+    "lang": "en",
+    "slug": "icrpg-target-cards-v2",
+    "date": "2023-07-28T17:49:40Z",
+    "translationKey": "icrpg-target-cards-v2",
+    "source": "_import/static-export/icrpg-target-cards-v2/index.html"
+  },
+  {
+    "permalink": "/pl/icrpg-wprowadzenie/",
+    "lang": "pl",
+    "slug": "icrpg-wprowadzenie",
+    "date": "2019-09-21T22:19:58Z",
+    "translationKey": "icrpg-quick-start",
+    "source": "_import/static-export/pl/icrpg-wprowadzenie/index.html"
+  },
+  {
+    "permalink": "/icrpg-quick-start/",
+    "lang": "en",
+    "slug": "icrpg-quick-start",
+    "date": "2019-09-21T22:17:09Z",
+    "translationKey": "icrpg-quick-start",
+    "source": "_import/static-export/icrpg-quick-start/index.html"
+  },
+  {
+    "permalink": "/pl/tapety/",
+    "lang": "pl",
+    "slug": "tapety",
+    "date": "2019-05-22T20:06:55Z",
+    "translationKey": "wallpapers",
+    "source": "_import/static-export/pl/tapety/index.html"
+  },
+  {
+    "permalink": "/wallpapers/",
+    "lang": "en",
+    "slug": "wallpapers",
+    "date": "2019-05-22T19:56:13Z",
+    "translationKey": "wallpapers",
+    "source": "_import/static-export/wallpapers/index.html"
+  },
+  {
+    "permalink": "/pl/icrpg-karty-celu/",
+    "lang": "pl",
+    "slug": "icrpg-karty-celu",
+    "date": "2019-02-23T06:57:05Z",
+    "translationKey": "icrpg-target-cards",
+    "source": "_import/static-export/pl/icrpg-karty-celu/index.html"
+  },
+  {
+    "permalink": "/icrpg-target-cards/",
+    "lang": "en",
+    "slug": "icrpg-target-cards",
+    "date": "2019-02-23T06:56:01Z",
+    "translationKey": "icrpg-target-cards",
+    "source": "_import/static-export/icrpg-target-cards/index.html"
+  },
+  {
+    "permalink": "/icrpg-hero-cards/",
+    "lang": "en",
+    "slug": "icrpg-hero-cards",
+    "date": "2019-02-13T23:15:41Z",
+    "translationKey": "icrpg-hero-cards",
+    "source": "_import/static-export/icrpg-hero-cards/index.html"
+  },
+  {
+    "permalink": "/pl/icrpg-karty-postaci/",
+    "lang": "pl",
+    "slug": "icrpg-karty-postaci",
+    "date": "2019-02-13T23:15:36Z",
+    "translationKey": "icrpg-karty-postaci",
+    "source": "_import/static-export/pl/icrpg-karty-postaci/index.html"
+  },
+  {
+    "permalink": "/pl/koksownik/",
+    "lang": "pl",
+    "slug": "koksownik",
+    "date": "2018-11-19T20:54:39Z",
+    "translationKey": "brazier",
+    "source": "_import/static-export/pl/koksownik/index.html"
+  },
+  {
+    "permalink": "/brazier/",
+    "lang": "en",
+    "slug": "brazier",
+    "date": "2018-11-17T23:13:43Z",
+    "translationKey": "brazier",
+    "source": "_import/static-export/brazier/index.html"
+  },
+  {
+    "permalink": "/pl/halloween-2/",
+    "lang": "pl",
+    "slug": "halloween-2",
+    "date": "2018-10-31T10:14:55Z",
+    "translationKey": "halloween",
+    "source": "_import/static-export/pl/halloween-2/index.html"
+  },
+  {
+    "permalink": "/halloween/",
+    "lang": "en",
+    "slug": "halloween",
+    "date": "2018-10-31T10:04:08Z",
+    "translationKey": "halloween",
+    "source": "_import/static-export/halloween/index.html"
+  },
+  {
+    "permalink": "/pl/zelowa-kostka/",
+    "lang": "pl",
+    "slug": "zelowa-kostka",
+    "date": "2018-10-28T23:20:41Z",
+    "translationKey": "gelatinous-cube",
+    "source": "_import/static-export/pl/zelowa-kostka/index.html"
+  },
+  {
+    "permalink": "/gelatinous-cube/",
+    "lang": "en",
+    "slug": "gelatinous-cube",
+    "date": "2018-10-28T23:20:38Z",
+    "translationKey": "gelatinous-cube",
+    "source": "_import/static-export/gelatinous-cube/index.html"
+  },
+  {
+    "permalink": "/pl/malowanie-beholdera/",
+    "lang": "pl",
+    "slug": "malowanie-beholdera",
+    "date": "2018-10-20T16:09:34Z",
+    "translationKey": "malowanie-beholdera",
+    "source": "_import/static-export/pl/malowanie-beholdera/index.html"
+  },
+  {
+    "permalink": "/beholder-painting/",
+    "lang": "en",
+    "slug": "beholder-painting",
+    "date": "2018-10-20T16:01:37Z",
+    "translationKey": "beholder-painting",
+    "source": "_import/static-export/beholder-painting/index.html"
+  },
+  {
+    "permalink": "/pl/vangmar-po-polsku/",
+    "lang": "pl",
+    "slug": "vangmar-po-polsku",
+    "date": "2018-09-22T20:15:26Z",
+    "translationKey": "vangmar-po-polsku",
+    "source": "_import/static-export/pl/vangmar-po-polsku/index.html"
+  },
+  {
+    "permalink": "/pl/zle-drzewa/",
+    "lang": "pl",
+    "slug": "zle-drzewa",
+    "date": "2018-09-21T22:30:30Z",
+    "translationKey": "evil-woods-crafting",
+    "source": "_import/static-export/pl/zle-drzewa/index.html"
+  },
+  {
+    "permalink": "/pl/ognisko/",
+    "lang": "pl",
+    "slug": "ognisko",
+    "date": "2018-09-21T22:11:08Z",
+    "translationKey": "campfire",
+    "source": "_import/static-export/pl/ognisko/index.html"
+  },
+  {
+    "permalink": "/pl/ciemne-lasy-gajen/",
+    "lang": "pl",
+    "slug": "ciemne-lasy-gajen",
+    "date": "2018-09-21T21:44:38Z",
+    "translationKey": "dark-woods-of-gajen",
+    "source": "_import/static-export/pl/ciemne-lasy-gajen/index.html"
+  },
+  {
+    "permalink": "/pl/dodajac-wagi/",
+    "lang": "pl",
+    "slug": "dodajac-wagi",
+    "date": "2018-09-21T19:27:51Z",
+    "translationKey": "adding-weight",
+    "source": "_import/static-export/pl/dodajac-wagi/index.html"
+  },
+  {
+    "permalink": "/pl/strzaskane-schody/",
+    "lang": "pl",
+    "slug": "strzaskane-schody",
+    "date": "2018-09-21T18:30:27Z",
+    "translationKey": "the-shattered-stairs",
+    "source": "_import/static-export/pl/strzaskane-schody/index.html"
+  },
+  {
+    "permalink": "/pl/wylaz-z-krzakow/",
+    "lang": "pl",
+    "slug": "wylaz-z-krzakow",
+    "date": "2018-09-06T18:35:13Z",
+    "translationKey": "wylaz-z-krzakow",
+    "source": "_import/static-export/pl/wylaz-z-krzakow/index.html"
+  },
+  {
+    "permalink": "/pl/dwustronne-plansze/",
+    "lang": "pl",
+    "slug": "dwustronne-plansze",
+    "date": "2018-09-05T20:50:55Z",
+    "translationKey": "two-side-boards",
+    "source": "_import/static-export/pl/dwustronne-plansze/index.html"
+  },
+  {
+    "permalink": "/pl/jak-ciac-styrodur/",
+    "lang": "pl",
+    "slug": "jak-ciac-styrodur",
+    "date": "2018-09-03T20:36:52Z",
+    "translationKey": "polystyrene-foam-cutting-tips",
+    "source": "_import/static-export/pl/jak-ciac-styrodur/index.html"
+  },
+  {
+    "permalink": "/pl/drewniane-podlogi/",
+    "lang": "pl",
+    "slug": "drewniane-podlogi",
+    "date": "2018-09-03T20:01:32Z",
+    "translationKey": "wooden-floors",
+    "source": "_import/static-export/pl/drewniane-podlogi/index.html"
+  },
+  {
+    "permalink": "/evil-woods-crafting/",
+    "lang": "en",
+    "slug": "evil-woods-crafting",
+    "date": "2017-11-01T08:07:27Z",
+    "translationKey": "evil-woods-crafting",
+    "source": "_import/static-export/evil-woods-crafting/index.html"
+  },
+  {
+    "permalink": "/campfire/",
+    "lang": "en",
+    "slug": "campfire",
+    "date": "2017-11-01T08:00:22Z",
+    "translationKey": "campfire",
+    "source": "_import/static-export/campfire/index.html"
+  },
+  {
+    "permalink": "/dark-woods-of-gajen/",
+    "lang": "en",
+    "slug": "dark-woods-of-gajen",
+    "date": "2017-11-01T08:00:09Z",
+    "translationKey": "dark-woods-of-gajen",
+    "source": "_import/static-export/dark-woods-of-gajen/index.html"
+  },
+  {
+    "permalink": "/adding-weight/",
+    "lang": "en",
+    "slug": "adding-weight",
+    "date": "2017-10-18T07:20:02Z",
+    "translationKey": "adding-weight",
+    "source": "_import/static-export/adding-weight/index.html"
+  },
+  {
+    "permalink": "/the-shattered-stairs/",
+    "lang": "en",
+    "slug": "the-shattered-stairs",
+    "date": "2017-10-10T22:27:02Z",
+    "translationKey": "the-shattered-stairs",
+    "source": "_import/static-export/the-shattered-stairs/index.html"
+  },
+  {
+    "permalink": "/go-out-of-the-bushes/",
+    "lang": "en",
+    "slug": "go-out-of-the-bushes",
+    "date": "2017-09-30T18:24:08Z",
+    "translationKey": "go-out-of-the-bushes",
+    "source": "_import/static-export/go-out-of-the-bushes/index.html"
+  },
+  {
+    "permalink": "/two-side-boards/",
+    "lang": "en",
+    "slug": "two-side-boards",
+    "date": "2017-09-30T09:05:00Z",
+    "translationKey": "two-side-boards",
+    "source": "_import/static-export/two-side-boards/index.html"
+  },
+  {
+    "permalink": "/polystyrene-foam-cutting-tips/",
+    "lang": "en",
+    "slug": "polystyrene-foam-cutting-tips",
+    "date": "2017-09-29T12:06:40Z",
+    "translationKey": "polystyrene-foam-cutting-tips",
+    "source": "_import/static-export/polystyrene-foam-cutting-tips/index.html"
+  },
+  {
+    "permalink": "/wooden-floors/",
+    "lang": "en",
+    "slug": "wooden-floors",
+    "date": "2017-09-28T07:20:49Z",
+    "translationKey": "wooden-floors",
+    "source": "_import/static-export/wooden-floors/index.html"
+  },
+  {
+    "permalink": "/doorway/",
+    "lang": "en",
+    "slug": "doorway",
+    "date": "2017-09-27T22:17:06Z",
+    "translationKey": "doorway",
+    "source": "_import/static-export/doorway/index.html"
+  },
+  {
+    "permalink": "/pl/drzwi/",
+    "lang": "pl",
+    "slug": "drzwi",
+    "date": "2017-09-27T20:40:56Z",
+    "translationKey": "drzwi",
+    "source": "_import/static-export/pl/drzwi/index.html"
+  }
+]

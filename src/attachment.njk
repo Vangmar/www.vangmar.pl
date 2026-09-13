@@ -1,0 +1,44 @@
+---
+# WordPress attachment pages for the Forests of Gajen gallery.
+#
+# Each gallery thumbnail on that post links to a page showing the full-size
+# image and its caption. Those are live URLs, so they are reproduced here from
+# src/_data/attachments.json.
+#
+# Only the eight the gallery actually links to are generated. WordPress also
+# chained every attachment to the next with Previous/Next Image links, reaching
+# images that appear nowhere on the site; recreating that chain would pull in a
+# long tail of pages nothing points at, so the navigation is left out.
+pagination:
+  data: attachments
+  size: 1
+  alias: attachment
+permalink: "{{ attachment.permalink }}"
+layout: layouts/base.njk
+lang: en
+bodyClass: attachment wp-singular attachment-template-default single single-attachment wp-theme-author full-post singular singular-attachment
+eleventyComputed:
+  title: "{{ attachment.title }}"
+  image: "{{ attachment.image }}"
+---
+			<div id="loop-container" class="loop-container">
+				<div class="attachment type-attachment status-inherit hentry entry">
+					<article>
+						<div class="post-header">
+							<h1 class="post-title">{{ attachment.title }}</h1>
+						</div>
+						<div class="post-content">
+							<div class="attachment-container">
+								<img width="{{ attachment.width }}" height="{{ attachment.height }}" src="{{ attachment.image }}" class="attachment-full size-full" alt="{{ attachment.alt }}" srcset="{{ attachment.srcset }}" sizes="(max-width: {{ attachment.width }}px) 100vw, {{ attachment.width }}px">
+								<span class="attachment-caption"></span>
+							</div>
+						</div>
+					</article>
+					<nav class="further-reading">
+						<div class="previous">
+							<span>{{ i18n[lang].previousPost }}</span>
+							<a href="{{ attachment.parent }}" rel="prev">{{ i18n[lang].returnToBlog }}</a>
+						</div>
+					</nav>
+				</div>
+			</div>

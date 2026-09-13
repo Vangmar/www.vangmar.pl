@@ -1,6 +1,13 @@
 ---
+# The English blog loop. WordPress showed ten posts per page, with page one at
+# the site root and the rest under /page/N/ — addresses that are linked from
+# elsewhere, so the sizing and the shape of these URLs both have to match.
+pagination:
+  data: collections.posts_en
+  size: 10
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 layout: layouts/home.njk
-permalink: /
 lang: en
 bodyClass: home blog wp-theme-author full-post
 ---
