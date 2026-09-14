@@ -49,3 +49,23 @@ body,
   max-width: 100%;
   height: auto;
 }
+
+/*
+ * Search results.
+ *
+ * The Author theme already styles everything the results page is built from —
+ * the form, the `.search` entry list, `.archive-header`, `.search-bottom`. Only
+ * two things are genuinely new: the match highlight, and the line that reports
+ * how many results there were.
+ */
+.search-count {
+  text-align: center;
+  color: #767676;
+  margin: 0;
+}
+
+.search mark {
+  background: #F3E4B4;
+  color: inherit;
+  padding: 0 2px;
+}

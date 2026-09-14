@@ -158,6 +158,8 @@ src/
   posts/en|pl/    46 posts
   wp-content/     media, at its original WordPress paths
   index.njk       English blog loop   pl/index.njk    Polish blog loop
+  search.njk      English search page pl/search.njk   Polish search page
+  search-index.11ty.js  the two search indexes, as JSON
   archive.njk     month, category and tag archives
   attachment.njk  gallery attachment pages
   sitemap.njk     sitemap.xml
@@ -196,6 +198,54 @@ apostrophe) in the archive heading, because only the heading goes through
 `wptexturize`. The rebuild uses the straight apostrophe consistently in both
 places.
 
+## Search
+
+The sidebar search widget is back, between *Recent Posts* and *Archives* where
+WordPress had it, and results are rendered on the client.
+
+| URL                     | What it searches                           |
+| ----------------------- | ------------------------------------------ |
+| `/search/?s=term`       | the English posts                           |
+| `/pl/search/?s=term`    | the Polish posts                            |
+| `/?s=term`, `/pl/?s=term` | the WordPress addresses; they redirect to the above |
+
+Scoping the two languages separately is what Polylang did — `/?s=x` and
+`/pl/?s=x` returned different result sets — and it means a reader downloads only
+their own language's index.
+
+**There is no search library.** All 46 posts together hold about 45 KB of
+readable text; the bodies are mostly gallery and `<iframe>` markup rather than
+prose. So `src/search-index.11ty.js` ships the text itself as
+`/search-index-en.json` and `/search-index-pl.json` (about 29 KB and 38 KB), and
+`src/assets/js/search.js` scans it with `indexOf`. That is roughly what
+WordPress did — `LIKE '%term%'` across title, excerpt and content, with AND
+between the terms — so there is no stemming and no fuzzy matching: `swiatla`
+finds `światła`, but `światło` finds neither, because the word never appears in
+that form.
+
+Queries are folded to compare case- and accent-insensitively. The fold is
+length-preserving, because match positions in the folded text are used to slice
+and highlight the original, and it special-cases `ł`, the one Polish letter
+whose stroke is part of the letter rather than a combining mark that
+`normalize("NFD")` can strip.
+
+Hits are ranked by where the terms appear — title 8, categories and tags 4,
+description 2, body 1 — with ties broken by publish date, and shown as an
+excerpt around the first match. Results are rendered in the same markup
+`partials/post-loop.njk` emits for a post, so the Author theme's existing
+`.search` styles apply with almost no additions; `mark` and the result count are
+the only new rules in `assets/css/vangmar.css`.
+
+The form is a plain `GET` and needs no JavaScript to submit — it lands on the
+search page, which reads the term back out of the URL. Rendering the results
+does need JavaScript, and the page says so in a `<noscript>`. Search pages carry
+`noindex, follow`.
+
+The widget's own strings ("Search", "Go") are English on the Polish pages,
+because that is what the export shows WordPress serving there; the results page
+is new, and its strings follow the same convention. They live in
+`src/_data/i18n.mjs` alongside the other theme strings if that is ever revisited.
+
 ## Search engine indexing
 
 **The live WordPress site sends `noindex, nofollow` on every page**, which is
@@ -207,7 +257,6 @@ is not wanted, add the meta tag back in `src/_includes/layouts/base.njk`.
 
 These were WordPress-only features with no static equivalent:
 
-- **Search widget** — needs a server. A client-side index can be added later.
 - **Hubbub share bar** and the *Meta* widget (`wp-login.php`, comment feeds).
 - **Comments**, which were not in use.
 - **jQuery and the theme's JS bundle**, replaced by `assets/js/navigation.js`

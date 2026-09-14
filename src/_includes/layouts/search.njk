@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+bodyClass: search wp-theme-author
+# Results pages are not content and should not be indexed. robots.txt allows
+# everything, so the exclusion has to be stated on the page itself.
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{#-
+  The search results page, shared by /search/ and /pl/search/.
+
+  WordPress rendered search server-side at /?s=term, so unlike every other page
+  here there is no exported original to reproduce. What *is* reproduced is the
+  Author theme's own search styling, which author.css still carries in full: the
+  `search` body class — deliberately without `full-post`, which is what switches
+  the theme to its centred-excerpt layout — plus the `.archive-header` and
+  `.search-bottom` blocks it already has rules for.
+
+  The page ships empty; assets/js/search.js fills it in from the index, reading
+  the term out of the URL. The `data-` attributes carry what the script cannot
+  work out for itself — the index location and the strings it has to compose.
+  HtmlBasePlugin does not rewrite `data-` attributes, so the index URL is put
+  through the `url` filter by hand.
+-#}
+{%- set t = i18n[lang] -%}
+{#- The count sits inside `.archive-header` rather than below it: the header is
+    the one white block here, and a bare paragraph after it would show `.main`'s
+    grey through as a stray band between the header and the first result. -#}
+			<div class="archive-header">
+				<i class="fas fa-search" aria-hidden="true"></i>
+				<h1 class="post-title">{{ t.searchResultsFor }} <span data-search-term></span></h1>
+				<p class="search-count" data-search-count role="status" aria-live="polite">{{ t.searchPrompt }}</p>
+				<noscript>
+					<p class="search-count">{{ t.searchNeedsJs }}</p>
+				</noscript>
+			</div>
+			<div id="search-results" class="loop-container"
+				data-search-index="{{ ('/search-index-' + lang + '.json') | url }}"
+				data-search-published="{{ t.publishedOn }}"
+				data-search-heading="{{ t.searchResultsFor }}"
+				data-search-site="{{ site.title }}"
+				data-search-prompt="{{ t.searchPrompt }}"
+				data-search-one="{{ t.searchOneResult }}"
+				data-search-many="{{ t.searchManyResults }}"></div>
+			<div class="search-bottom" data-search-empty hidden>
+				<p>{{ t.searchNoResults }}</p>
+{% set formId = "search-field-bottom" %}{% include "partials/search-form.njk" %}
+			</div>

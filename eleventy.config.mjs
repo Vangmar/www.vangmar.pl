@@ -6,6 +6,7 @@
 // declares its exact legacy address in a `permalink:` front matter field.
 
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import * as cheerio from "cheerio";
 
 /**
  * Where the site is served from.
@@ -133,6 +134,17 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("absolute", (path, base) =>
     new URL(path, base).href);
 
+  /**
+   * A post body reduced to its readable words, for the search index.
+   *
+   * Cheerio rather than a tag-stripping regex: post bodies are the original
+   * WordPress HTML, so they carry `srcset` lists, iframe attributes and HTML
+   * entities that a regex would either leave behind or mangle. `.text()` sees
+   * only text nodes, and decodes entities on the way out.
+   */
+  eleventyConfig.addFilter("plainText", (html) =>
+    cheerio.load(html ?? "", null, false).text().replace(/\s+/g, " ").trim());
+
   // Newest first — the order the blog loop and the Recent Posts widget use.
   eleventyConfig.addCollection("postsByDate", (collectionApi) =>
     collectionApi.getFilteredByTag("post").sort((a, b) => b.date - a.date));
@@ -231,6 +243,8 @@ export default function (eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"],
+    // `11ty.js` is for the search index, which is built as JavaScript so that
+    // JSON.stringify handles the escaping rather than a template.
+    templateFormats: ["njk", "md", "html", "11ty.js"],
   };
 }

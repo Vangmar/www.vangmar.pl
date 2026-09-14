@@ -18,6 +18,24 @@ const themeStrings = {
   sidebar: "Sidebar",
   viewAllPostsIn: "View all posts in",
   viewAllPostsTagged: "View all posts tagged",
+  // Search. The widget's own strings are the ones the export shows WordPress
+  // serving on *both* languages — the Polish home page also rendered "Search"
+  // and "Go", because the widget is theme chrome and Polylang only translated
+  // content. The results page is new (WordPress rendered search server-side, so
+  // the export captured no such page), and its strings sit here for the same
+  // reason: a Polish page reading "Wyniki wyszukiwania" directly above
+  // "Published on" would be less coherent than one that stays in English
+  // throughout. Moving them into the per-language blocks below is a small
+  // change if that is ever wanted.
+  search: "Search",
+  searchGo: "Go",
+  searchFor: "Search for:",
+  searchResultsFor: "Search Results for:",
+  searchPrompt: "Type something to search for.",
+  searchNoResults: "Nothing found. Try a different search:",
+  searchNeedsJs: "Search needs JavaScript, which is switched off.",
+  searchOneResult: "1 result",
+  searchManyResults: "% results",
 };
 
 export default {
@@ -26,6 +44,7 @@ export default {
     htmlLang: "en-GB",
     ogLocale: "en_GB",
     home: "/",
+    searchUrl: "/search/",
     recentPosts: "Recent Posts",
     archives: "Archives",
     postsHeading: "Vangmar.pl Posts",
@@ -47,6 +66,7 @@ export default {
     htmlLang: "pl-PL",
     ogLocale: "pl_PL",
     home: "/pl/",
+    searchUrl: "/pl/search/",
     recentPosts: "Ostatnie wpisy",
     archives: "Archiwa",
     postsHeading: "Vangmar.pl Posts",
