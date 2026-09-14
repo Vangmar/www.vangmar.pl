@@ -19,6 +19,11 @@
 {%- if description %}
 <meta name="description" content="{{ description }}">
 {%- endif %}
+{#- Set by the search pages: results are not content worth indexing, and
+    robots.txt allows everything, so the exclusion is stated per page. -#}
+{%- if noindex %}
+<meta name="robots" content="noindex, follow">
+{%- endif %}
 <link rel="canonical" href="{{ page.url | absolute(site.url) }}">
 {#-
   hreflang alternates are only emitted where a genuine counterpart exists: a post
@@ -72,5 +77,8 @@
 	</div>
 </div>
 <script src="/assets/js/navigation.js" defer></script>
+{# On every page, not just the search page: it also forwards the legacy
+   WordPress search URLs, /?s=term and /pl/?s=term, which can arrive anywhere. -#}
+<script src="/assets/js/search.js" defer></script>
 </body>
 </html>

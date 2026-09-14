@@ -1,0 +1,21 @@
+{#-
+  The WordPress search form, reproduced from the export so the Author theme's
+  existing `.search-form-container` rules style it with no additions — including
+  the 70%/30% field-and-button split it applies inside `.main`.
+
+  `method="get"` and `name="s"` are kept deliberately: this is a plain HTML form
+  and needs no JavaScript to work. Submitting it lands on the search page, which
+  reads the term back out of the URL.
+
+  Expects `formId`. WordPress hardcoded `id="search-field"`, but the search page
+  renders this partial twice — in the sidebar and again under the results — and
+  two elements cannot share an id.
+-#}
+{%- set t = i18n[lang] -%}
+<div class="search-form-container">
+	<form role="search" method="get" class="search-form" action="{{ t.searchUrl }}">
+		<label class="screen-reader-text" for="{{ formId }}">{{ t.search }}</label>
+		<input id="{{ formId }}" type="search" class="search-field" value="" name="s" title="{{ t.searchFor }}">
+		<input type="submit" class="search-submit" value="{{ t.searchGo }}">
+	</form>
+</div>

@@ -1,0 +1,15 @@
+---
+# The English search page. Its Polish twin is src/pl/search.njk — two files
+# rather than one paginated template, mirroring how the two home pages are
+# written, so each can state its own permalink and translation pairing plainly.
+permalink: "/search/"
+layout: layouts/search.njk
+lang: en
+title: "Search"
+# Pairs the two search pages with each other, so the language switcher in
+# partials/header.njk moves between them instead of falling back to the home
+# page. This is the same `translation` field a translated post sets.
+translation:
+  url: "/pl/search/"
+  lang: "pl"
+---

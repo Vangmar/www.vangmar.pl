@@ -10,6 +10,10 @@
 {%- endfor %}
 					</ul>
 				</section>
+{#- Between Recent Posts and Archives, which is where the export shows it. -#}
+				<section class="widget widget_search">
+{% set formId = "search-field" %}{% include "partials/search-form.njk" %}
+				</section>
 				<section class="widget widget_archive">
 					<h2 class="widget-title">{{ t.archives }}</h2>
 					<ul>
